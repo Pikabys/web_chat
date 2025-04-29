@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real-time Chat</title>
+</head>
+<body>
+    <h1>Real-time Chat</h1>
+
+    <form onsubmit="event.preventDefault(); connectToChat();">
+        <label for="username">Введите ваше имя: </label>
+        <input type="text" id="username" required>
+        <button type="submit">Подключиться</button>
+    </form>
+
+    <div id="chatbox" style="border: 1px solid #ccc; width: 300px; height: 200px; overflow-y: scroll; margin-top: 10px;"></div>
+
+    <form onsubmit="event.preventDefault(); sendMessage();">
+        <input type="text" id="message" required>
+        <button type="submit">Отправить</button>
+    </form>
+
+    <script>
+        let socket;
+        let username;
+        const chatbox = document.getElementById("chatbox");
+
+        function connectToChat() {
+            username = document.getElementById("username").value;
+            if (username) {
+                socket = new WebSocket(`ws://${location.host}/ws/${username}`);
+                socket.onmessage = function(event) {
+                    chatbox.innerHTML += event.data + "<br>";
+                    chatbox.scrollTop = chatbox.scrollHeight;
+                };
+            }
+        }
+
+        function sendMessage() {
+            const message = document.getElementById("message").value;
+            if (socket && message) {
+                socket.send(message);
+                document.getElementById("message").value = "";
+            }
+        }
+    </script>
+</body>
+</html>
