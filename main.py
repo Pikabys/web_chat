@@ -8,6 +8,10 @@ templates = Jinja2Templates(directory="templates")
 connected_clients = []
 message_queue = []
 
+@app.head("/")
+def head():
+    return ""
+
 @app.get("/", response_class=HTMLResponse)
 async def chat_interface(request: Request):
     return templates.TemplateResponse("chat.html", {"request": request})
