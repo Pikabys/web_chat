@@ -1,22 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Real-time Chat</title>
+    <title>Chat</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            border-radius: 20px;
+            background-color: #222222;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            color: white
+        }
+
+        form {
+            margin-bottom: 10px;
+        }
+
+        #chatbox {
+            border: 1px solid #3C3C3C;
+            width: 1410px;
+            height: 700px;
+            overflow-y: scroll;
+            margin-top: 10px;
+            padding: 10px 200px;
+            border-radius: 20px;
+            background-color: #3C3C3C;
+        }
+        
+        button {
+    		padding: 10px 20px;
+    		font-size: 16px;
+    		border: none;
+    		border-radius: 8px;
+   		 	cursor: pointer;
+    		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    		transition: all 0.2s ease;
+    	}
+    	
+		.NAME {
+			border-radius: 20px;
+			color: black;
+			width: 150px;
+			height: 20px;
+		}
+	
+		.mess {
+			border-radius: 40px;
+			font-size: 20px;
+			color: black;
+			width: 1080px;
+			height: 40px;
+			margin-top: -10;
+		}
+		
+		.pole-imya {
+			color: white;	
+		}
+
+    </style>
 </head>
 <body>
-    <h1>Real-time Chat</h1>
+    <h1>Chat</h1>
 
     <form onsubmit="event.preventDefault(); connectToChat();">
-        <label for="username">Введите ваше имя: </label>
-        <input type="text" id="username" required>
-        <button type="submit">Подключиться</button>
+		<label for="username" class="pole_imya" id="usernameLabel"> </label>
+        <input type="text" id="username" class="NAME" placeholder="Введите ваше имя" required>
+        <button type="submit" class="connect" >Подключиться</button>
     </form>
 
-    <div id="chatbox" style="border: 1px solid #ccc; width: 300px; height: 200px; overflow-y: scroll; margin-top: 10px;"></div>
+    <div id="chatbox"></div>
 
     <form onsubmit="event.preventDefault(); sendMessage();">
-        <input type="text" id="message" required>
-        <button type="submit">Отправить</button>
+        <input type="text" id="message" class="mess" placeholder="   Напишите сообщение" required>
+        <button type="submit" class="SEND">↑</button>
     </form>
 
     <script>
