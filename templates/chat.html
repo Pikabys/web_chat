@@ -46,10 +46,10 @@
     	}
     	
 		.NAME {
-			border-radius: 20px;
+			border-radius: 30px;
 			color: black;
 			width: 200px;
-			height: 40px;
+			height: 30px;
 		}
 	
 		.mess {
@@ -74,6 +74,12 @@
 			text-align: center;
 			padding: 5px;
 			font-size:20px;
+		}	
+		.connect{
+		width: 150px;
+		height: 40px;
+		border-radius: 10px;
+		text-align: center; 
 		} 
     </style>
 </head>
@@ -82,7 +88,7 @@
 
     <form onsubmit="event.preventDefault(); connectToChat();">
 		<label for="username" class="pole_imya" id="usernameLabel"> </label>
-        <input type="text" id="username" class="NAME" placeholder="Введите ваше имя" required>
+        <input type="text" id="username" class="NAME" placeholder="  Введите ваше имя" required>
         <button type="submit" class="connect" >Подключиться</button>
     </form>
 
