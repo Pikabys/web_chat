@@ -8,10 +8,6 @@ templates = Jinja2Templates(directory="templates")
 connected_clients = []
 message_queue = []
 
-@app.head("/")
-def head():
-    return ""
-
 @app.get("/", response_class=HTMLResponse)
 async def chat_interface(request: Request):
     return templates.TemplateResponse("chat.html", {"request": request})
@@ -33,7 +29,7 @@ async def websocket_endpoint(websocket: WebSocket, username: str):
             message = f"{username}: {data}"
             message_queue.append(message)
 
-            for client in connected_clients:
+            for client in connected_clients[-10:]:
                 await client["websocket"].send_text(message)
 
     except WebSocketDisconnect:
